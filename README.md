@@ -18,6 +18,8 @@ eksctl create cluster --name loki-promtail --region us-east-1 --managed
 
 3) Install Grafana & loki as seperate using helm
 
+a) Create aws keys as secret: kubectl create secret generic iam-loki-s3 --from-literal=AWS_ACCESS_KEY_ID='***' --from-literal=AWS_SECRET_ACCESS_KEY='***' -n monitoring
+
 helm upgrade --install loki --namespace=monitoring --set grafana.enabled=false,promtail.enabled=true  grafana/loki-stack --values loki-values.yaml
 
 helm install grafana grafana/grafana --namespace=monitoring
