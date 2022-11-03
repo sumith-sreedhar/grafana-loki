@@ -3,7 +3,7 @@ Customer Requirement:
 Grafana-Loki Multi tenant setup:
 
 a) One account will be the AWS management account where you can install the full loki stack (Loki, Grafana, promtail). <br />
-b) The other two AWS accounts should have only promtail running in the EKS clusters, scraping the sample app logs and reporting to the central loki running in the management account cluster. Then that loki instance can be used as a data source for Grafana <br />
+b) The other two AWS accounts should have only promtail running in the EKS clusters, scraping the sample app logs and reporting to the central loki running in the management account cluster. Then that loki instance can be used as a data source for Grafana. <br />
 c) Then the RBAC will be implemented in Grafana to allow tenants to only see their logs when they log in to Grafana but allow me as the admin to see the entire thing.<br />
 
 **************************************************************************************************************************************************************
@@ -14,17 +14,17 @@ Steps:
 
 eksctl create cluster --name loki-promtail --region us-east-1 --managed
 
-2) Install the AWS Load Balancer Controller add-on in the main EKS cluster.
+2) Install the AWS Load Balancer Controller add-on in the main EKS cluster. Ref: https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html <br />
 
-3) Install Grafana & loki as seperate using helm
+3) Install Grafana & loki as seperate using helm <br />
 
-helm upgrade --install loki --namespace=monitoring --set grafana.enabled=false,promtail.enabled=true  grafana/loki-stack --values loki-values.yaml
+   #helm upgrade --install loki --namespace=monitoring --set grafana.enabled=false,promtail.enabled=true  grafana/loki-stack --values loki-values.yaml
 
-helm install grafana grafana/grafana --namespace=monitoring
+   #helm install grafana grafana/grafana --namespace=monitoring
 
 4) Grafana load balancer becomes classic ELB. Loki use NLB using the following annotation in loki service:
 
-   service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
     service.beta.kubernetes.io/aws-load-balancer-scheme: internal
     service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
 
