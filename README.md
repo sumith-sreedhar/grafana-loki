@@ -57,10 +57,10 @@ Tenant auth details are defined in promtail-tenant1-values.yaml . loki url IP ne
 
 Grafana Setp:
 
-Login Grafana as admin user.
-Create Grafana Organizations and Add Loki data source (url is http://loki:3100 in this setup). Also enable Basic Auth and enter the credentials defined in promtail-tenant1-values.yaml
-Enter X-Scope-OrgID value (defined in promtail-tenant1-values.yaml) in Custom HTTP Headers
-Save & Test
+Login Grafana as admin user. <br />
+Create Grafana Organizations and Add Loki data source (url is http://loki:3100 in this setup). Also enable Basic Auth and enter the credentials defined in promtail-tenant1-values.yaml <br />
+Enter X-Scope-OrgID value (defined in promtail-tenant1-values.yaml) in Custom HTTP Headers <br />
+Save & Test <br />
 
 
 ***********************************************************************************************************************************************************************
