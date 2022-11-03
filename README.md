@@ -12,11 +12,11 @@ Steps:
 
 1) Configure EKS cluster<br />
 
-eksctl create cluster --name loki-promtail --region us-east-1 --managed
+   #eksctl create cluster --name loki-promtail --region us-east-1 --managed
 
 2) Install the AWS Load Balancer Controller add-on in the main EKS cluster. Ref: https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html <br />
 
-3) Install Grafana & loki as seperate using helm <br />
+3) Install Grafana & loki as seperate services using helm <br />
 
    #helm upgrade --install loki --namespace=monitoring --set grafana.enabled=false,promtail.enabled=true  grafana/loki-stack --values loki-values.yaml
 
@@ -42,13 +42,13 @@ Configure the tenant cluster:
 
 1) Run the following command as the other aws account:
 
-eksctl create cluster --name Tenant1 --region us-east-1 --managed
+   #eksctl create cluster --name Tenant1 --region us-east-1 --managed
 
 2)  Add cluster as a VPC endpoint to the endpoint service configured in main  EKS Cluster.
 
 3) Install Promtail agent:
 
-helm upgrade  promtail loki/promtail -n promtail -f promtail-tenant1-values.yaml
+   #helm upgrade  promtail loki/promtail -n promtail -f promtail-tenant1-values.yaml
 
 Tenant auth details are defined in promtail-tenant1-values.yaml . loki url IP needs to be the tenant endpoint privte dns IP
 
@@ -66,7 +66,6 @@ Save & Test
 ***********************************************************************************************************************************************************************
 Referrences:
 
-https://itnext.io/multi-tenancy-with-loki-promtail-and-grafana-demystified-e93a2a314473
-https://grafana.com/blog/2020/07/21/loki-tutorial-how-to-send-logs-from-eks-with-promtail-to-get-full-visibility-in-grafana/
-https://bluelight.co/blog/how-to-install-grafana-loki
-
+https://itnext.io/multi-tenancy-with-loki-promtail-and-grafana-demystified-e93a2a314473 <br />
+https://grafana.com/blog/2020/07/21/loki-tutorial-how-to-send-logs-from-eks-with-promtail-to-get-full-visibility-in-grafana/ <br />
+https://bluelight.co/blog/how-to-install-grafana-loki <br />
