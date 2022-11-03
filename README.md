@@ -62,3 +62,11 @@ Create Grafana Organizations and Add Loki data source (url is http://loki:3100 i
 Enter X-Scope-OrgID value (defined in promtail-tenant1-values.yaml) in Custom HTTP Headers
 Save & Test
 
+
+***********************************************************************************************************************************************************************
+Referrences:
+
+https://itnext.io/multi-tenancy-with-loki-promtail-and-grafana-demystified-e93a2a314473
+https://grafana.com/blog/2020/07/21/loki-tutorial-how-to-send-logs-from-eks-with-promtail-to-get-full-visibility-in-grafana/
+https://bluelight.co/blog/how-to-install-grafana-loki
+
