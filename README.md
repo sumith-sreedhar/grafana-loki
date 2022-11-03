@@ -24,9 +24,9 @@ Steps:
 
 4) Grafana load balancer becomes classic ELB. Loki use NLB using the following annotation in loki service:
 
-    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
-    service.beta.kubernetes.io/aws-load-balancer-scheme: internal
-    service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance <br />
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internal <br />
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip <br />
 
 5) Create a Private link with the tenant cluster sharing NLB. NLB private dns can be obtained from tenant vpc endpoint. Create an ec2 instance in tenant subnet and try curl that IP.
 Eg: curl -G -s http://10.0.12.118:3100/loki/api/v1/labels | jq
