@@ -1,0 +1,7 @@
+config:
+ clients:
+    - url: http://192.168.12.10:3100/loki/api/v1/push
+      tenant_id: tenant2
+      basic_auth:
+        username: tenant2
+        password: secret
