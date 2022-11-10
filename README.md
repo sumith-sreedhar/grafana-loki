@@ -18,6 +18,8 @@ Steps:
 
 3) Install Grafana & loki as seperate services using helm <br />
 
+   #helm repo add loki https://grafana.github.io/loki/charts
+
    #helm upgrade --install loki --namespace=monitoring --set grafana.enabled=false,promtail.enabled=true  grafana/loki-stack --values loki-values.yaml
 
    #helm install grafana grafana/grafana --set persistence.storageClassName="gp2" --set persistence.enabled=true --set service.type=LoadBalancer --namespace=monitoring
