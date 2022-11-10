@@ -20,7 +20,7 @@ Steps:
 
    #helm upgrade --install loki --namespace=monitoring --set grafana.enabled=false,promtail.enabled=true  grafana/loki-stack --values loki-values.yaml
 
-   #helm install grafana grafana/grafana --namespace=monitoring
+   #helm install grafana grafana/grafana --set persistence.storageClassName="gp2" --set persistence.enabled=true --set service.type=LoadBalancer --namespace=monitoring
 
 4) Grafana load balancer becomes classic ELB. Loki use NLB using the following annotation in loki service:
 
